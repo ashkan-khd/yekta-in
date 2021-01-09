@@ -15,8 +15,8 @@ class Advertiser(BaseAdvertising):
     def help(self):
         return 'Id: id of this field is autoInc\nviews: nubmer of show of this ad\
             \nnumber: nubmer of click of this ad\nname: name of this ad'
-    
-    @staticmethod
-    def getTotalClicks():
+
+    @classmethod
+    def getTotalClicks(self):
         return __class__.clicks
 

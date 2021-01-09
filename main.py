@@ -26,7 +26,7 @@ if __name__ == "__main__":
     advertiser2.getClicks()
     Advertiser.getTotalClicks()
     Advertiser.help()
-    print(Advertiser.views)
+    Advertiser.views
 
 
     

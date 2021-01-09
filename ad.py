@@ -1,12 +1,12 @@
 from base_model import BaseAdvertising
 
 class Ad(BaseAdvertising):
-    def __init__(self, title, imgUrl, link, advertise ):
+    def __init__(self, title, imgUrl, link, advertiser):
         super().__init__()
         self.title = title
         self.imgUrl = imgUrl
         self.link = link
-
+        self.advertiser = advertiser
     def getTitle(self):
         return self.title
 
@@ -26,12 +26,19 @@ class Ad(BaseAdvertising):
         self.link = link
 
     def setAdvertiser(self, advertiser):
-        self.advertiser = advertiser.name
+        self.advertiser = advertiser
 
     def describeMe(self):
         super().describeMe()
         return 'this class store ad info'
 
+    def incViews(self):
+        super().incViews()
+        self.advertiser.views +=1
+        
 
+    def incClicks(self):
+        super().incClicks()
+        self.advertiser.clicks +=1
 
 
