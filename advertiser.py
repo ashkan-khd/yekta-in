@@ -13,6 +13,9 @@ class Advertiser(BaseAdvertising):
     def setName(self, name):
         self.name = name
 
+    def describeMe(self):
+        return 'this class store ad info'
+
     @classmethod
     def help(cls):
         return 'Id: id of this field is autoInc\nviews: nubmer of show of this ad\

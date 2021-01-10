@@ -1,14 +1,20 @@
-class BaseAdvertising:
-    id = -1
+from abc import ABC, abstractmethod
 
+class AbstractBaseAdvertising(ABC):
+    @abstractmethod
+    def describeMe(self):
+        pass
+
+class BaseAdvertising(AbstractBaseAdvertising):
+    id = -1
     def __init__(self):
         self.__class__.id += 1
         self.id = self.__class__.id
         self.views = 0
         self.clicks = 0
+
     def describeMe(self):
-        #TODO abstract
-        'this is parent class'
+        return 'this class is baseAdvertiser'
 
     def getClicks(self):
         return self.clicks

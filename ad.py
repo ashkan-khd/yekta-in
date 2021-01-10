@@ -30,7 +30,6 @@ class Ad(BaseAdvertising):
         self.advertiser = advertiser
 
     def describeMe(self):
-        super().describeMe()
         return 'this class store ad info'
 
     def incViews(self):
