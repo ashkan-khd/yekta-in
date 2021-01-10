@@ -7,6 +7,7 @@ class Ad(BaseAdvertising):
         self.imgUrl = imgUrl
         self.link = link
         self.advertiser = advertiser
+
     def getTitle(self):
         return self.title
 
@@ -40,5 +41,4 @@ class Ad(BaseAdvertising):
     def incClicks(self):
         super().incClicks()
         self.advertiser.clicks +=1
-
-
+        
