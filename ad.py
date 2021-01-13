@@ -52,10 +52,30 @@ class Ad(BaseAdvertising):
 
     @staticmethod
     def getObjectWithId(id):
-        print(Ad.ads)
         for ad in Ad.ads:
             if ad.id == id:
                 return ad
                 
         return None
         
+    @staticmethod
+    def sortAndGetObjectByKey(sortOrder = 'asc',sortKey=''):
+        objectList = Ad.ads
+        if sortKey == 'clicks':
+            if sortOrder.lower() == 'asc':
+                objectList.sort(key=lambda objectList: objectList.clicks)
+            elif sortOrder.lower() == 'dec':
+                objectList.sort(key=lambda objectList: objectList.clicks, reverse=True)
+            else: 
+                raise Exception("invalid sortkey")
+        elif sortKey == 'views':
+            if sortOrder.lower() == 'asc':
+                objectList.sort(key=lambda objectList: objectList.views)
+            elif sortOrder.lower() == 'dec':
+                objectList.sort(key=lambda objectList: objectList.views, reverse=True)
+            else:
+                raise Exception("invalid sortkey")
+
+        return objectList
+
+
