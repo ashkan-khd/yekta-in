@@ -1,4 +1,6 @@
 from base_model import BaseAdvertising
+from ad import Ad
+import time
 
 class Advertiser(BaseAdvertising):
     advertisers = []
@@ -27,12 +29,17 @@ class Advertiser(BaseAdvertising):
         for adver in Advertiser.advertisers:
             clickSum += adver.clicks
         return clickSum
+    @staticmethod
+    def sort_by_date():
+        for adver in Advertiser.advertisers:
+            print(adver.creation_date)
+    
 
-    # @classmethod
-    # def getTotalClicks(cls):
-    #     clickSum = 0
-    #     for adver in cls.advertisers:
-    #         clickSum += adver.clicks
-    #     return clickSum
-
-
+    @staticmethod
+    def object_data_in_json():
+        data =[]
+        for adver in Advertiser.advertisers:
+            data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
+        return data[0]
+    
+        

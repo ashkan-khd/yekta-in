@@ -1,8 +1,10 @@
 from base_model import BaseAdvertising
 
 class Ad(BaseAdvertising):
-    def __init__(self, title, imgUrl, link, advertiser):
+    ads = []
+    def __init__(self, title, imgUrl, link, advertiser = None):
         super().__init__()
+        self.__class__.ads.append(self)
         self.title = title
         self.imgUrl = imgUrl
         self.link = link
@@ -36,8 +38,15 @@ class Ad(BaseAdvertising):
         super().incViews()
         self.advertiser.views +=1
         
-
     def incClicks(self):
         super().incClicks()
         self.advertiser.clicks +=1
+
+    @staticmethod
+    def object_data_in_json():
+        data =[]
+        for ad in Ad.ads:
+            data.append({"ad id":ad.id, "ad title":ad.title, "ad imgUrl": ad.imgUrl, "ad link":ad.link, "ad advertiser":None, "ad views":ad.views, "ad click": ad.clicks, "creation date": ad.creation_date.strftime("%Y/%m/%d %H:%M") })
+
+        return data
         

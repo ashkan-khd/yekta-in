@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import datetime
 
 class AbstractBaseAdvertising(ABC):
     @abstractmethod
@@ -12,6 +13,7 @@ class BaseAdvertising(AbstractBaseAdvertising):
         self.id = self.__class__.id
         self.views = 0
         self.clicks = 0
+        self.creation_date = datetime.datetime.now()
 
     def describeMe(self):
         return 'this class is baseAdvertiser'

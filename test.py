@@ -17,18 +17,31 @@ ad2.incClicks()
 ad2.incClicks()
 
 
+# Advertiser.sort_by_click()
 
-print('Clicks: should be 3',ad1.clicks)
-print('Clicks: should be 2',ad2.clicks)
-print('Clicks: should be 0',ad3.clicks)
-
-
-print('ash',adver1.clicks)
-print('ali',adver2.clicks)
+print(Ad.object_data_in_json())
 
 
 
-print('pop',Advertiser.getTotalClicks())
+
+
+
+
+
+
+
+
+# print('Clicks: should be 3',ad1.clicks)
+# print('Clicks: should be 2',ad2.clicks)
+# print('Clicks: should be 0',ad3.clicks)
+
+
+# print('ash',adver1.clicks)
+# print('ali',adver2.clicks)
+
+
+
+# print('pop',Advertiser.getTotalClicks())
 
 # ad  nm   co
 # ad1 ash  3
