@@ -49,4 +49,13 @@ class Ad(BaseAdvertising):
             data.append({"ad id":ad.id, "ad title":ad.title, "ad imgUrl": ad.imgUrl, "ad link":ad.link, "ad advertiser":None, "ad views":ad.views, "ad click": ad.clicks, "creation date": ad.creation_date.strftime("%Y/%m/%d %H:%M") })
 
         return data
+
+    @staticmethod
+    def getObjectWithId(id):
+        print(Ad.ads)
+        for ad in Ad.ads:
+            if ad.id == id:
+                return ad
+                
+        return None
         

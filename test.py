@@ -16,7 +16,10 @@ ad1.incClicks()
 ad2.incClicks()
 ad2.incClicks()
 
-
+print(Ad.getObjectWithId(0))
+print(Ad.getObjectWithId(1))
+print(Ad.getObjectWithId(2))
+print(Ad.getObjectWithId(3))
 # Advertiser.sort_by_click()
 
 print(Ad.object_data_in_json())

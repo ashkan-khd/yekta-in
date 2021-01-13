@@ -42,4 +42,13 @@ class Advertiser(BaseAdvertising):
             data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
         return data[0]
     
+    @staticmethod
+    def getObjectWithId(id):
+        for advertiser in Advertiser.advertisers:
+            if advertiser.id == id:
+                return advertiser
+                
+        return None
+        
+    
         
