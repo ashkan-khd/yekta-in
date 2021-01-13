@@ -43,7 +43,7 @@ class Ad(BaseAdvertising):
         self.advertiser.clicks +=1
 
     @staticmethod
-    def object_data_in_json():
+    def getObjectDataInJson():
         data =[]
         for ad in Ad.ads:
             data.append({"ad id":ad.id, "ad title":ad.title, "ad imgUrl": ad.imgUrl, "ad link":ad.link, "ad advertiser":None, "ad views":ad.views, "ad click": ad.clicks, "creation date": ad.creation_date.strftime("%Y/%m/%d %H:%M") })

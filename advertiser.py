@@ -36,11 +36,12 @@ class Advertiser(BaseAdvertising):
     
 
     @staticmethod
-    def object_data_in_json():
+    def getObjectDataInJson():
         data =[]
         for adver in Advertiser.advertisers:
             data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
-        return data[0]
+        
+        return data
     
     @staticmethod
     def getObjectWithId(id):
