@@ -3,28 +3,28 @@ import datetime
 
 
 class BaseAdvertising(ABC):
-    id = -1
+    id: int = -1
     def __init__(self):
         self.__class__.id += 1
-        self.id = self.__class__.id
-        self.views = 0
-        self.clicks = 0
-        self.creation_date = datetime.datetime.now()
+        self.id: int = self.__class__.id
+        self.views: int = 0
+        self.clicks: int = 0
+        self.creation_date: datetime = datetime.datetime.now()
 
     @abstractmethod
-    def describeMe(self):
+    def describeMe(self) -> str:
         raise NotImplementedError()
 
-    def getClicks(self):
+    def getClicks(self) -> int:
         return self.clicks
 
-    def getViews(self):
+    def getViews(self) -> int:
         return self.views
 
-    def incClicks(self):
+    def incClicks(self) -> None:
         self.clicks += 1
 
-    def incViews(self):
+    def incViews(self) -> None:
         self.views += 1
 
 
