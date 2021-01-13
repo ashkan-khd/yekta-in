@@ -1,12 +1,8 @@
 from abc import ABC, abstractmethod
 import datetime
 
-class AbstractBaseAdvertising(ABC):
-    @abstractmethod
-    def describeMe(self):
-        pass
 
-class BaseAdvertising(AbstractBaseAdvertising):
+class BaseAdvertising(ABC):
     id = -1
     def __init__(self):
         self.__class__.id += 1
@@ -15,8 +11,9 @@ class BaseAdvertising(AbstractBaseAdvertising):
         self.clicks = 0
         self.creation_date = datetime.datetime.now()
 
+    @abstractmethod
     def describeMe(self):
-        return 'this class is baseAdvertiser'
+        raise NotImplementedError()
 
     def getClicks(self):
         return self.clicks
@@ -29,6 +26,5 @@ class BaseAdvertising(AbstractBaseAdvertising):
 
     def incViews(self):
         self.views += 1
-
 
 
