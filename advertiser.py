@@ -4,7 +4,7 @@ from base_model import BaseAdvertising
 
 
 class Advertiser(BaseAdvertising):
-    advertisers: list = []
+    advertisers: list = [object]
 
     def __init__(self, name) -> None:
         super().__init__()
@@ -14,8 +14,8 @@ class Advertiser(BaseAdvertising):
     def getName(self) -> str:
         return self.name
 
-    def setName(self, name) -> None:
-        self.name = name
+    def setName(self, name: str) -> None:
+        self.name: str = name
 
     def describeMe(self) -> str:
         return 'this class store ad info'
@@ -27,7 +27,7 @@ class Advertiser(BaseAdvertising):
 
     @staticmethod
     def getTotalClicks() -> int:
-        clickSum = 0
+        clickSum: int = 0
         for adver in Advertiser.advertisers:
             clickSum += adver.clicks
         return clickSum
@@ -39,7 +39,7 @@ class Advertiser(BaseAdvertising):
 
     @staticmethod
     def getObjectDataInJson() -> list:
-        data =[]
+        data: list = [object]
         for adver in Advertiser.advertisers:
             data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
 

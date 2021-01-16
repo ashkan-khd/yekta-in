@@ -1,9 +1,11 @@
-from typing import List
+from typing import List, Dict
 
 from base_model import BaseAdvertising
 
+
 class Ad(BaseAdvertising):
-    ads: list = []
+    ads: list = [object]
+
     def __init__(self, title: str, imgUrl: str, link: str, advertiser: object = None):
         super().__init__()
         self.__class__.ads.append(self)
@@ -15,22 +17,22 @@ class Ad(BaseAdvertising):
     def getTitle(self) -> str:
         return self.title
 
-    def setTitle(self, title) -> None:
+    def setTitle(self, title: str) -> None:
         self.title = title
 
     def getImageUrl(self) -> str:
         return self.imgUrl
 
-    def setImgUrl(self, link) -> None:
+    def setImgUrl(self, link: str) -> None:
         self.imgUrl = link
 
     def getLink(self) -> str:
         return self.link
 
-    def setLink(self, link) -> None:
+    def setLink(self, link: str) -> None:
         self.link = link
 
-    def setAdvertiser(self, advertiser) -> None:
+    def setAdvertiser(self, advertiser: object) -> None:
         self.advertiser = advertiser
 
     def describeMe(self) -> str:
@@ -45,8 +47,8 @@ class Ad(BaseAdvertising):
         self.advertiser.clicks +=1
 
     @staticmethod
-    def getObjectDataInJson() -> List[dict]:
-        data =[]
+    def getObjectDataInJson() -> List[Dict[str, int, object]]:
+        data: list =[object]
         for ad in Ad.ads:
             data.append({"ad id":ad.id, "ad title":ad.title, "ad imgUrl": ad.imgUrl, "ad link":ad.link, "ad advertiser":None, "ad views":ad.views, "ad click": ad.clicks, "creation date": ad.creation_date.strftime("%Y/%m/%d %H:%M") })
 

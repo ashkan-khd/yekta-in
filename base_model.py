@@ -32,7 +32,7 @@ class BaseAdvertising(ABC):
         self.views += 1
 
     @classmethod
-    def sort_and_get_object_by_key(cls, sortOrder='asc', sortKey='views', objects=None) -> List[object]:
+    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = 'views', objects: object = None) -> List[object]:
         if sortKey == 'clicks':
             if sortOrder.lower() == 'asc':
                 objects.sort(key=lambda objects: objects.clicks)
