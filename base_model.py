@@ -2,8 +2,12 @@ from abc import ABC, abstractmethod
 import datetime
 
 
+from typing import List
+
+
 class BaseAdvertising(ABC):
     id: int = -1
+
     def __init__(self):
         self.__class__.id += 1
         self.id: int = self.__class__.id
@@ -27,4 +31,21 @@ class BaseAdvertising(ABC):
     def incViews(self) -> None:
         self.views += 1
 
+    @classmethod
+    def sort_and_get_object_by_key(cls, sortOrder='asc', sortKey='views', objects=None) -> List[object]:
+        if sortKey == 'clicks':
+            if sortOrder.lower() == 'asc':
+                objects.sort(key=lambda objects: objects.clicks)
+            elif sortOrder.lower() == 'dec':
+                objects.sort(key=lambda objects: objects.clicks, reverse=True)
+            else:
+                raise Exception("invalid sortkey")
+        elif sortKey == 'views':
+            if sortOrder.lower() == 'asc':
+                objects.sort(key=lambda objects: objects.views)
+            elif sortOrder.lower() == 'dec':
+                objects.sort(key=lambda objects: objects.views, reverse=True)
+            else:
+                raise Exception("invalid sortkey")
 
+        return objects

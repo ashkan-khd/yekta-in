@@ -1,3 +1,5 @@
+from typing import List
+
 from base_model import BaseAdvertising
 
 class Ad(BaseAdvertising):
@@ -37,13 +39,13 @@ class Ad(BaseAdvertising):
     def incViews(self) -> None:
         super().incViews()
         self.advertiser.views +=1
-        
+
     def incClicks(self) -> None:
         super().incClicks()
         self.advertiser.clicks +=1
 
     @staticmethod
-    def getObjectDataInJson() -> list[dict]:
+    def getObjectDataInJson() -> List[dict]:
         data =[]
         for ad in Ad.ads:
             data.append({"ad id":ad.id, "ad title":ad.title, "ad imgUrl": ad.imgUrl, "ad link":ad.link, "ad advertiser":None, "ad views":ad.views, "ad click": ad.clicks, "creation date": ad.creation_date.strftime("%Y/%m/%d %H:%M") })
@@ -55,27 +57,13 @@ class Ad(BaseAdvertising):
         for ad in Ad.ads:
             if ad.id == id:
                 return ad
-                
-        return None
-        
-    @staticmethod
-    def sortAndGetObjectByKey(sortOrder = 'asc',sortKey='') -> list[object]:
-        objectList = Ad.ads
-        if sortKey == 'clicks':
-            if sortOrder.lower() == 'asc':
-                objectList.sort(key=lambda objectList: objectList.clicks)
-            elif sortOrder.lower() == 'dec':
-                objectList.sort(key=lambda objectList: objectList.clicks, reverse=True)
-            else: 
-                raise Exception("invalid sortkey")
-        elif sortKey == 'views':
-            if sortOrder.lower() == 'asc':
-                objectList.sort(key=lambda objectList: objectList.views)
-            elif sortOrder.lower() == 'dec':
-                objectList.sort(key=lambda objectList: objectList.views, reverse=True)
-            else:
-                raise Exception("invalid sortkey")
 
-        return objectList
+        return None
+
+    @classmethod
+    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: object =None) -> List[object]:
+        return super(Ad, cls).sort_and_get_object_by_key(sortOrder=sortOrder, sortKey=sortKey, objects=cls.ads)
+
+
 
 

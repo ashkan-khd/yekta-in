@@ -1,9 +1,11 @@
+from typing import List
+
 from base_model import BaseAdvertising
-from ad import Ad
-import time
+
 
 class Advertiser(BaseAdvertising):
     advertisers: list = []
+
     def __init__(self, name) -> None:
         super().__init__()
         self.__class__.advertisers.append(self)
@@ -31,26 +33,26 @@ class Advertiser(BaseAdvertising):
         return clickSum
 
     @staticmethod
-    def sort_by_date() -> list[object]:
+    def sort_by_date() -> List[object]:
         #TODO
         pass
-    
 
     @staticmethod
     def getObjectDataInJson() -> list:
         data =[]
         for adver in Advertiser.advertisers:
             data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
-        
+
         return data
-    
+
     @staticmethod
     def getObjectWithId(id) -> object:
         for advertiser in Advertiser.advertisers:
             if advertiser.id == id:
                 return advertiser
-                
+
         return None
-        
-    
-        
+
+    @classmethod
+    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: object = None) -> List[object]:
+        return super(Advertiser, cls).sort_and_get_object_by_key(sortOrder=sortOrder, sortKey=sortKey, objects=cls.advertisers)
