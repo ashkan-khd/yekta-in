@@ -9,13 +9,13 @@ class Advertiser(BaseAdvertising):
     def __init__(self, name) -> None:
         super().__init__()
         self.__class__.advertisers.append(self)
-        self.name: str = name
+        self.__name: str = name
 
     def get_name(self) -> str:
-        return self.name
+        return self.__name
 
     def set_name(self, name: str) -> None:
-        self.name: str = name
+        self.__name: str = name
 
     def describe_me(self) -> str:
         return 'this class store ad info'
