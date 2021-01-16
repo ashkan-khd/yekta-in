@@ -14,48 +14,48 @@ class Ad(BaseAdvertising):
         self.link: str = link
         self.advertiser: object = advertiser
 
-    def getTitle(self) -> str:
+    def get_title(self) -> str:
         return self.title
 
-    def setTitle(self, title: str) -> None:
+    def set_title(self, title: str) -> None:
         self.title = title
 
-    def getImageUrl(self) -> str:
+    def get_image_url(self) -> str:
         return self.imgUrl
 
-    def setImgUrl(self, link: str) -> None:
+    def set_img_url(self, link: str) -> None:
         self.imgUrl = link
 
-    def getLink(self) -> str:
+    def get_link(self) -> str:
         return self.link
 
-    def setLink(self, link: str) -> None:
+    def set_link(self, link: str) -> None:
         self.link = link
 
-    def setAdvertiser(self, advertiser: object) -> None:
+    def set_advertiser(self, advertiser: object) -> None:
         self.advertiser = advertiser
 
-    def describeMe(self) -> str:
+    def describe_me(self) -> str:
         return 'this class store ad info'
 
-    def incViews(self) -> None:
-        super().incViews()
-        self.advertiser.views +=1
+    def inc_views(self) -> None:
+        super().inc_views()
+        self.advertiser.views += 1
 
-    def incClicks(self) -> None:
-        super().incClicks()
-        self.advertiser.clicks +=1
+    def inc_clicks(self) -> None:
+        super().inc_clicks()
+        self.advertiser.clicks += 1
 
     @staticmethod
-    def getObjectDataInJson() -> List[Dict[str, int, object]]:
-        data: list =[object]
+    def get_object_data_in_json() -> List[Dict[str, int, object]]:
+        data: list = [object]
         for ad in Ad.ads:
             data.append({"ad id":ad.id, "ad title":ad.title, "ad imgUrl": ad.imgUrl, "ad link":ad.link, "ad advertiser":None, "ad views":ad.views, "ad click": ad.clicks, "creation date": ad.creation_date.strftime("%Y/%m/%d %H:%M") })
 
         return data
 
     @staticmethod
-    def getObjectWithId(id) -> object:
+    def get_object_with_id(id) -> object:
         for ad in Ad.ads:
             if ad.id == id:
                 return ad

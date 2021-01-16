@@ -16,19 +16,19 @@ class BaseAdvertising(ABC):
         self.creation_date: datetime = datetime.datetime.now()
 
     @abstractmethod
-    def describeMe(self) -> str:
+    def describe_me(self) -> str:
         raise NotImplementedError()
 
-    def getClicks(self) -> int:
+    def get_clicks(self) -> int:
         return self.clicks
 
-    def getViews(self) -> int:
+    def get_views(self) -> int:
         return self.views
 
-    def incClicks(self) -> None:
+    def inc_clicks(self) -> None:
         self.clicks += 1
 
-    def incViews(self) -> None:
+    def inc_views(self) -> None:
         self.views += 1
 
     @classmethod

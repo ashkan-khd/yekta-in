@@ -11,13 +11,13 @@ class Advertiser(BaseAdvertising):
         self.__class__.advertisers.append(self)
         self.name: str = name
 
-    def getName(self) -> str:
+    def get_name(self) -> str:
         return self.name
 
-    def setName(self, name: str) -> None:
+    def set_name(self, name: str) -> None:
         self.name: str = name
 
-    def describeMe(self) -> str:
+    def describe_me(self) -> str:
         return 'this class store ad info'
 
     @classmethod
@@ -26,7 +26,7 @@ class Advertiser(BaseAdvertising):
             \nnumber: nubmer of click of this ad\nname: name of this ad'
 
     @staticmethod
-    def getTotalClicks() -> int:
+    def get_total_clicks() -> int:
         clickSum: int = 0
         for adver in Advertiser.advertisers:
             clickSum += adver.clicks
@@ -38,7 +38,7 @@ class Advertiser(BaseAdvertising):
         pass
 
     @staticmethod
-    def getObjectDataInJson() -> list:
+    def get_object_data_in_json() -> list:
         data: list = [object]
         for adver in Advertiser.advertisers:
             data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
@@ -46,7 +46,7 @@ class Advertiser(BaseAdvertising):
         return data
 
     @staticmethod
-    def getObjectWithId(id) -> object:
+    def get_object_with_id(id) -> object:
         for advertiser in Advertiser.advertisers:
             if advertiser.id == id:
                 return advertiser
