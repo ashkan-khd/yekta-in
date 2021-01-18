@@ -6,11 +6,11 @@ from typing import List
 
 
 class BaseAdvertising(ABC):
-    id: int = -1
+    __id: int = -1
 
     def __init__(self):
-        self.__class__.id += 1
-        self.id: int = self.__class__.id
+        self.__class__.__id += 1
+        self.id: int = self.__class__.__id
         self._views: int = 0
         self._clicks: int = 0
         self._creation_date: datetime = datetime.datetime.now()
@@ -32,7 +32,7 @@ class BaseAdvertising(ABC):
         self._views += 1
 
     @classmethod
-    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = 'views', objects: object = None) -> List[object]:
+    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = 'views', objects: object = None) -> List:
         if sortKey == 'clicks':
             if sortOrder.lower() == 'asc':
                 objects.sort(key=lambda objects: objects._clicks)

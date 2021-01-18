@@ -1,10 +1,12 @@
+from __future__ import annotations
+
 from typing import List, Dict
 
 from base_model import BaseAdvertising
 
 
 class Ad(BaseAdvertising):
-    ads: list = []
+    ads: List[Ad] = []
 
     def __init__(self, title: str, imgUrl: str, link: str, advertiser: object = None):
         super().__init__()
@@ -50,13 +52,12 @@ class Ad(BaseAdvertising):
     def get_object_data_in_json() -> List[Dict[str, int]]:
         __data: list = []
         for ad in Ad.ads:
-            print(ad)
             __data.append({"ad id":ad.id, "ad title":ad.__title, "ad imgUrl": ad.__imgUrl, "ad link":ad.__link, "ad advertiser":None, "ad views":ad._views, "ad click": ad._clicks, "creation date": ad._creation_date.strftime("%Y/%m/%d %H:%M")})
 
         return __data
 
     @staticmethod
-    def get_object_with_id(id) -> object:
+    def get_object_with_id(id) -> Ad:
         for ad in Ad.ads:
             if ad.id == id:
                 return ad
@@ -64,7 +65,7 @@ class Ad(BaseAdvertising):
         return None
 
     @classmethod
-    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: object =None) -> List[object]:
+    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: Ad =None) -> List[object]:
         print(cls.ads[1:])
         return super(Ad, cls).sort_and_get_object_by_key(sortOrder=sortOrder, sortKey=sortKey, objects=cls.ads[1:])
 

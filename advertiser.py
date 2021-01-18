@@ -1,10 +1,11 @@
-from typing import List
+from __future__ import annotations
 
+from typing import List
 from base_model import BaseAdvertising
 
 
 class Advertiser(BaseAdvertising):
-    advertisers: list = [object]
+    advertisers: List[Advertiser] = []
 
     def __init__(self, name) -> None:
         super().__init__()
@@ -33,20 +34,20 @@ class Advertiser(BaseAdvertising):
         return clickSum
 
     @staticmethod
-    def sort_by_date() -> List[object]:
+    def sort_by_date() -> List[Advertiser]:
         #TODO
         pass
 
     @staticmethod
-    def get_object_data_in_json() -> list:
-        data: list = [object]
+    def get_object_data_in_json() -> List[Advertiser]:
+        data: List[Advertiser] = []
         for adver in Advertiser.advertisers:
             data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
 
         return data
 
     @staticmethod
-    def get_object_with_id(id) -> object:
+    def get_object_with_id(id) -> Advertiser:
         for advertiser in Advertiser.advertisers:
             if advertiser.id == id:
                 return advertiser
@@ -54,5 +55,5 @@ class Advertiser(BaseAdvertising):
         return None
 
     @classmethod
-    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: object = None) -> List[object]:
+    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: Advertiser = None) -> List[Advertiser]:
         return super(Advertiser, cls).sort_and_get_object_by_key(sortOrder=sortOrder, sortKey=sortKey, objects=cls.advertisers)
