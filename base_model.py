@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 import datetime
 
@@ -32,20 +34,25 @@ class BaseAdvertising(ABC):
         self._views += 1
 
     @classmethod
-    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = 'views', objects: object = None) -> List:
-        if sortKey == 'clicks':
-            if sortOrder.lower() == 'asc':
+    def _sort_and_get_objects(cls, objects: List[BaseAdvertising], sort_order: str = 'asc', sort_key: str = 'views') -> List[BaseAdvertising]:
+        if sort_key == 'clicks':
+            if sort_order.lower() == 'asc':
                 objects.sort(key=lambda objects: objects._clicks)
-            elif sortOrder.lower() == 'dec':
+            elif sort_order.lower() == 'dec':
                 objects.sort(key=lambda objects: objects._clicks, reverse=True)
             else:
                 raise Exception("invalid sortkey")
-        elif sortKey == 'views':
-            if sortOrder.lower() == 'asc':
+        elif sort_key == 'views':
+            if sort_order.lower() == 'asc':
                 objects.sort(key=lambda objects: objects._views)
-            elif sortOrder.lower() == 'dec':
+            elif sort_order.lower() == 'dec':
                 objects.sort(key=lambda objects: objects._views, reverse=True)
             else:
                 raise Exception("invalid sortkey")
 
         return objects
+
+    @abstractmethod
+    @classmethod
+    def sort_and_get_objects(cls, sortOrder: str = 'asc', sortKey: str = 'views'):
+        pass

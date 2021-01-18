@@ -55,5 +55,5 @@ class Advertiser(BaseAdvertising):
         return None
 
     @classmethod
-    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: Advertiser = None) -> List[Advertiser]:
-        return super(Advertiser, cls).sort_and_get_object_by_key(sortOrder=sortOrder, sortKey=sortKey, objects=cls.advertisers)
+    def sort_and_get_objects(cls, sort_order: str = 'asc', sort_key: str = 'views'):
+        return cls._sort_and_get_objects(cls.advertisers, sort_order, sort_key)

@@ -6,6 +6,7 @@ from base_model import BaseAdvertising
 
 
 class Ad(BaseAdvertising):
+
     ads: List[Ad] = []
 
     def __init__(self, title: str, imgUrl: str, link: str, advertiser: object = None):
@@ -65,10 +66,8 @@ class Ad(BaseAdvertising):
         return None
 
     @classmethod
-    def sort_and_get_object_by_key(cls, sortOrder: str = 'asc', sortKey: str = None, objects: Ad =None) -> List[object]:
-        print(cls.ads[1:])
-        return super(Ad, cls).sort_and_get_object_by_key(sortOrder=sortOrder, sortKey=sortKey, objects=cls.ads[1:])
-
+    def sort_and_get_objects(cls, sort_order: str = 'asc', sort_key: str = 'views'):
+        return cls._sort_and_get_objects(cls.ads, sort_order, sort_key)
 
 
 
