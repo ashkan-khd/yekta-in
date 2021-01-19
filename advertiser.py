@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Dict
 from base_model import BaseAdvertising
 
 
@@ -13,11 +13,10 @@ class Advertiser(BaseAdvertising):
     def to_str(self):
         return self.get_name()
 
-    __advertisers: List[Advertiser] = []
+    __advertisers: Dict[int, Advertiser] = {}
 
     def __init__(self, name) -> None:
         super().__init__()
-        self.__class__.__advertisers.append(self)
         self.__name: str = name
 
     def get_name(self) -> str:

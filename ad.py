@@ -14,11 +14,10 @@ class Ad(BaseAdvertising):
     def to_str(self):
         return self.get_title()
 
-    __ads: List[Ad] = []
+    __ads: Dict[int, Ad] = {}
 
     def __init__(self, title: str, imgUrl: str, link: str, advertiser: object = None):
         super().__init__()
-        self.__class__.__ads.append(self)
         self.__title: str = title
         self.__imgUrl: str = imgUrl
         self.__link: str = link

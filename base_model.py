@@ -16,6 +16,7 @@ class BaseAdvertising(ABC):
         self._views: int = 0
         self._clicks: int = 0
         self._creation_date: datetime = datetime.datetime.now()
+        self.__class__.get_objects()[self.id] = self
 
     @abstractmethod
     def describe_me(self) -> str:
@@ -37,7 +38,7 @@ class BaseAdvertising(ABC):
 
     @classmethod
     def sort_and_get_objects(cls, sort_order: str = 'asc', sort_key: str = 'views') -> List[BaseAdvertising]:
-        objects = cls.get_objects()
+        objects = list(cls.get_objects().values())
         if sort_key == 'clicks':
             if sort_order.lower() == 'asc':
                 objects.sort(key=lambda objects: objects._clicks)
@@ -69,8 +70,6 @@ class BaseAdvertising(ABC):
 
     @classmethod
     def get_object_with_id(cls, id):
-        for object in cls.get_objects():
-            if object.id == id:
-                return object
+        return cls.get_objects().get(id, None)
 
-        return None
+    # O(1) < O(logn) < O(n) < O(n^2) < O(a^n) < O(n!)
