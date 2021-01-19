@@ -5,11 +5,19 @@ from base_model import BaseAdvertising
 
 
 class Advertiser(BaseAdvertising):
-    advertisers: List[Advertiser] = []
+
+    @classmethod
+    def get_objects(cls):
+        return cls.__advertisers
+
+    def to_str(self):
+        return self.get_name()
+
+    __advertisers: List[Advertiser] = []
 
     def __init__(self, name) -> None:
         super().__init__()
-        self.__class__.advertisers.append(self)
+        self.__class__.__advertisers.append(self)
         self.__name: str = name
 
     def get_name(self) -> str:
@@ -29,7 +37,7 @@ class Advertiser(BaseAdvertising):
     @staticmethod
     def get_total_clicks() -> int:
         clickSum: int = 0
-        for adver in Advertiser.advertisers:
+        for adver in Advertiser.__advertisers:
             clickSum += adver.clicks
         return clickSum
 
@@ -41,19 +49,15 @@ class Advertiser(BaseAdvertising):
     @staticmethod
     def get_object_data_in_json() -> List[Advertiser]:
         data: List[Advertiser] = []
-        for adver in Advertiser.advertisers:
+        for adver in Advertiser.__advertisers:
             data.append({"adver id":adver.id,"adver name":adver.name,"adver total clicks": adver.clicks, "adver total views": adver.views})
 
         return data
 
     @staticmethod
     def get_object_with_id(id) -> Advertiser:
-        for advertiser in Advertiser.advertisers:
+        for advertiser in Advertiser.__advertisers:
             if advertiser.id == id:
                 return advertiser
 
         return None
-
-    @classmethod
-    def sort_and_get_objects(cls, sort_order: str = 'asc', sort_key: str = 'views'):
-        return cls._sort_and_get_objects(cls.advertisers, sort_order, sort_key)

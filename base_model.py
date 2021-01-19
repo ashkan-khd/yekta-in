@@ -21,10 +21,12 @@ class BaseAdvertising(ABC):
     def describe_me(self) -> str:
         raise NotImplementedError()
 
-    def get_clicks(self) -> int:
+    @property
+    def clicks(self) -> int:
         return self._clicks
 
-    def get_views(self) -> int:
+    @property
+    def views(self) -> int:
         return self._views
 
     def inc_clicks(self) -> None:
@@ -34,7 +36,8 @@ class BaseAdvertising(ABC):
         self._views += 1
 
     @classmethod
-    def _sort_and_get_objects(cls, objects: List[BaseAdvertising], sort_order: str = 'asc', sort_key: str = 'views') -> List[BaseAdvertising]:
+    def sort_and_get_objects(cls, sort_order: str = 'asc', sort_key: str = 'views') -> List[BaseAdvertising]:
+        objects = cls.get_objects()
         if sort_key == 'clicks':
             if sort_order.lower() == 'asc':
                 objects.sort(key=lambda objects: objects._clicks)
@@ -52,7 +55,14 @@ class BaseAdvertising(ABC):
 
         return objects
 
+    def __str__(self):
+        return self.to_str() + ', clicks:' + str(self.clicks) + ', views: ' + str(self.views)
+
     @abstractmethod
+    def to_str(self):
+        pass
+
     @classmethod
-    def sort_and_get_objects(cls, sortOrder: str = 'asc', sortKey: str = 'views'):
+    @abstractmethod
+    def get_objects(cls):
         pass

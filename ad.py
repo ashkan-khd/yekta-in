@@ -7,11 +7,18 @@ from base_model import BaseAdvertising
 
 class Ad(BaseAdvertising):
 
-    ads: List[Ad] = []
+    @classmethod
+    def get_objects(cls):
+        return cls.__ads
+
+    def to_str(self):
+        return self.get_title()
+
+    __ads: List[Ad] = []
 
     def __init__(self, title: str, imgUrl: str, link: str, advertiser: object = None):
         super().__init__()
-        self.__class__.ads.append(self)
+        self.__class__.__ads.append(self)
         self.__title: str = title
         self.__imgUrl: str = imgUrl
         self.__link: str = link
@@ -52,22 +59,15 @@ class Ad(BaseAdvertising):
     @staticmethod
     def get_object_data_in_json() -> List[Dict[str, int]]:
         __data: list = []
-        for ad in Ad.ads:
+        for ad in Ad.__ads:
             __data.append({"ad id":ad.id, "ad title":ad.__title, "ad imgUrl": ad.__imgUrl, "ad link":ad.__link, "ad advertiser":None, "ad views":ad._views, "ad click": ad._clicks, "creation date": ad._creation_date.strftime("%Y/%m/%d %H:%M")})
 
         return __data
 
     @staticmethod
     def get_object_with_id(id) -> Ad:
-        for ad in Ad.ads:
+        for ad in Ad.__ads:
             if ad.id == id:
                 return ad
 
         return None
-
-    @classmethod
-    def sort_and_get_objects(cls, sort_order: str = 'asc', sort_key: str = 'views'):
-        return cls._sort_and_get_objects(cls.ads, sort_order, sort_key)
-
-
-
