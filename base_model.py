@@ -37,23 +37,32 @@ class BaseAdvertising(ABC):
         self._views += 1
 
     @classmethod
+    def __sort_by_clicks(cls, objects, sort_order):
+        if sort_order.lower() == 'asc':
+            objects.sort(key=lambda objects: objects._clicks)
+        elif sort_order.lower() == 'dec':
+            objects.sort(key=lambda objects: objects._clicks, reverse=True)
+        else:
+            raise Exception("Invalid Sort Order")
+
+    @classmethod
+    def __sort_by_views(cls, objects, sort_order):
+        if sort_order.lower() == 'asc':
+            objects.sort(key=lambda objects: objects._views)
+        elif sort_order.lower() == 'dec':
+            objects.sort(key=lambda objects: objects._views, reverse=True)
+        else:
+            raise Exception("Invalid Sort Order")
+
+    @classmethod
     def sort_and_get_objects(cls, sort_order: str = 'asc', sort_key: str = 'views') -> List[BaseAdvertising]:
         objects = list(cls.get_objects().values())
         if sort_key == 'clicks':
-            if sort_order.lower() == 'asc':
-                objects.sort(key=lambda objects: objects._clicks)
-            elif sort_order.lower() == 'dec':
-                objects.sort(key=lambda objects: objects._clicks, reverse=True)
-            else:
-                raise Exception("invalid sortkey")
+            cls.__sort_by_clicks(objects, sort_order)
         elif sort_key == 'views':
-            if sort_order.lower() == 'asc':
-                objects.sort(key=lambda objects: objects._views)
-            elif sort_order.lower() == 'dec':
-                objects.sort(key=lambda objects: objects._views, reverse=True)
-            else:
-                raise Exception("invalid sortkey")
-
+            cls.__sort_by_views(objects, sort_order)
+        else:
+            raise Exception("Invalid Sort Key")
         return objects
 
     def __str__(self):
