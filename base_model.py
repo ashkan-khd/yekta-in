@@ -8,11 +8,11 @@ from typing import List
 
 
 class BaseAdvertising(ABC):
-    __id: int = -1
+    __next_id: int = -1
 
     def __init__(self):
-        self.__class__.__id += 1
-        self.id: int = self.__class__.__id
+        self.__class__.__next_id += 1
+        self.id: int = self.__class__.__next_id
         self._views: int = 0
         self._clicks: int = 0
         self._creation_date: datetime = datetime.datetime.now()
@@ -66,3 +66,11 @@ class BaseAdvertising(ABC):
     @abstractmethod
     def get_objects(cls):
         pass
+
+    @classmethod
+    def get_object_with_id(cls, id):
+        for object in cls.get_objects():
+            if object.id == id:
+                return object
+
+        return None

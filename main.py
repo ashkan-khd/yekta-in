@@ -17,3 +17,5 @@ if __name__ == "__main__":
     print(ali)
     advertisers = Advertiser.sort_and_get_objects('dec')
     print([str(advertiser) for advertiser in advertisers])
+    print(Advertiser.get_object_with_id(1))
+    print(Ad.get_object_with_id(2))
